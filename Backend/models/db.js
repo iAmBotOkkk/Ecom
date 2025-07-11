@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { email, string, number } = require('zod');
+
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() =>{
@@ -7,10 +7,12 @@ mongoose.connect(process.env.MONGO_URI)
 })
 
  const Ecom_Schema = mongoose.Schema({
-    firstname : string,
-    secondname : string,
-    email : string,
-    phone : number
+    firstname : String,
+    secondname : String,
+    email : String,
+    phone : Number,
+    password : String,
+    confirmPassword : String,
 })
 
 
