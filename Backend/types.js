@@ -19,10 +19,10 @@ const RegistrationValidation = zod.object({
     }),
     
     groceryShopDetails: zod.object({
-        shopNo: zod.string().optional(), // Optional field
+        shopNo: zod.string().optional(),
         area: zod.string().min(1, "Area is required"),
         city: zod.string().min(1, "City is required"),
-        landmark: zod.string().optional(), // Optional field
+        landmark: zod.string().optional(), 
         pincode: zod.string().regex(/^[0-9]{6}$/, "Pincode must be 6 digits").optional()
     })
 });
