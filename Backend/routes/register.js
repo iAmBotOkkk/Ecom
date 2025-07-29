@@ -8,9 +8,9 @@ const { RegistrationValidation } = require('../types');
 
 router.post("/register" , async (req,res) => {
     try{
-        const { success } = RegistrationValidation.safeParse(req.body);
+        const {success} = RegistrationValidation.safeParse(req.body);
         if(!success){
-            return res.status(403).json({
+            return res.status(401).json({
                 msg : "Invalid Inputs"
             })
         }
@@ -20,11 +20,11 @@ router.post("/register" , async (req,res) => {
             email : req.body.email
         })
         if(existingShopDetails){
-            return res.status(403).json({
+            return res.status(401).json({
                 msg : "Shop already exists"
             })
         } else {
-            const newShop = Grocery.create({
+            const newShop = await Grocery.create({
                groceryShopName : req.body.groceryShopName,
                 ownerDetails : {
                     ownerName : req.body.ownerName
@@ -39,6 +39,10 @@ router.post("/register" , async (req,res) => {
                     pincode : req.body.pincode,
         
                 }
+            })
+            return res.json({
+                msg : "Registration succesfull",
+                shop : newShop
             })
         }
     }catch(error){
