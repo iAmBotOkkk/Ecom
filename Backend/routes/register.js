@@ -16,7 +16,7 @@ router.post("/register" , async (req,res) => {
         const data = ValidationResult.data
 
         const existingShopDetails = await Grocery.findOne({
-            shopNo :data.shopNo,
+            shopNo : data.shopNo,
             email : data.email
         })
         if(existingShopDetails){
