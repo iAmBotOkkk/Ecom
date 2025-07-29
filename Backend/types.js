@@ -9,5 +9,23 @@ const SigninValidation = zod.object({
     password : zod.string().min(6)
 })
 
-module.exports = {SignupValidation , SigninValidation}
+const RegistrationValidation = zod.object({
+    groceryShopName: zod.string().min(1, "Shop name is required"),
+    
+    ownerDetails: zod.object({
+        ownerName: zod.string().min(1, "Owner name is required"),
+        email: zod.email("Invalid email format"),
+        phoneNumber: zod.string().min(10, "Phone number must be at least 10 digits")
+    }),
+    
+    groceryShopDetails: zod.object({
+        shopNo: zod.string().optional(), // Optional field
+        area: zod.string().min(1, "Area is required"),
+        city: zod.string().min(1, "City is required"),
+        landmark: zod.string().optional(), // Optional field
+        pincode: zod.string().regex(/^[0-9]{6}$/, "Pincode must be 6 digits").optional()
+    })
+});
+
+module.exports = {SignupValidation , SigninValidation , RegistrationValidation}
 
