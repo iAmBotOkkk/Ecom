@@ -1,23 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const Grocery = require('../models/db');
+const { Grocery } = require('../models/db');
 const { RegistrationValidation } = require('../types');
 
 
 
 router.post("/register" , async (req,res) => {
     try{
-        const {success} = RegistrationValidation.safeParse(req.body);
-        if(!success){
+        const ValidationResult= RegistrationValidation.safeParse(req.body);
+        if(!ValidationResult.success){
             return res.status(401).json({
                 msg : "Invalid Inputs"
             })
         }
+        const data = ValidationResult.data
 
         const existingShopDetails = await Grocery.findOne({
-            shopNo : req.body.shopNo,
-            email : req.body.email
+            shopNo :data.shopNo,
+            email : data.email
         })
         if(existingShopDetails){
             return res.status(401).json({
@@ -25,19 +25,18 @@ router.post("/register" , async (req,res) => {
             })
         } else {
             const newShop = await Grocery.create({
-               groceryShopName : req.body.groceryShopName,
+               groceryShopName : data.groceryShopName,
                 ownerDetails : {
-                    ownerName : req.body.ownerName
+                ownerName : data.ownerDetails.ownerName,
+                email : data.ownerDetails.email,
+                phoneNumber : data.ownerDetails.phoneNumber,
                 },
-                email : req.body.email,
-                phoneNumber : req.body.phoneNumber,
                 groceryShopDetails :{
-                    shopNo : req.body.shopNo,
-                    area : req.body.area,
-                    city : req.body.city,
-                    landmark : req.body.landmark,
-                    pincode : req.body.pincode,
-        
+                shopNo : data.groceryShopDetails.shopNo,
+                area : data.groceryShopDetails.area,
+                city : data.groceryShopDetails.city,
+                landmark : data.groceryShopDetails.landmark,
+                pincode : data.groceryShopDetails.pincode,
                 }
             })
             return res.json({
@@ -51,3 +50,5 @@ router.post("/register" , async (req,res) => {
     });
     }
 })
+
+module.exports = router
