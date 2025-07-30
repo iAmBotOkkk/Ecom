@@ -1,9 +1,15 @@
 
 export const Appbar = () => {
     return (
-       
-        <div className=" flex justify-between m-auto  w-7xl p-2 items-center">
-            <h1 className=" font-Inter text-4xl font-bold bg-gradient-to-r from-green-400 to-green-600 text-transparent bg-clip-text">TAZA</h1>
+      
+          <div className="bg-[url('vegetables.jpg')] h-screen">
+            <div className="absolute inset-0 bg-black/70" >
+             <div className="z-10 flex items-center justify-center h-full">
+        <h1 className="text-5xl font-bold text-white">Welcome to TAZA</h1>
+      </div>
+            </div>
+        <div className=" flex justify-between m-auto  w-7xl p-2 items-center relative">   
+            <h1 className=" font-higher text-4xl font-bold bg-gradient-to-r from-green-400 to-green-600 text-transparent bg-clip-text">TAZA</h1>
             <div className="flex items-center gap-3 p-4">
                 <div>
                     <button className="bg-gradient-to-r from-green-500
@@ -20,8 +26,8 @@ export const Appbar = () => {
                         Login
                     </button>
                 </div>
-
             </div>
-        </div>
+        </div>   
+        </div>  
     )
 }

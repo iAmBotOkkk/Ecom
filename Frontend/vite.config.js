@@ -7,7 +7,7 @@ export default defineConfig({
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter'],
+        higher: ['higher-jump.regular', 'cursive'],
       },
     },
   },
