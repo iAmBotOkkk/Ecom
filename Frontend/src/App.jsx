@@ -1,13 +1,14 @@
-import { Links } from "./Components/links"
-import { Navbar } from "./Components/Navbar"
+import { Appbar } from "./Components/AppBar"
+import './App.css'
+import { Homepage } from "./pages/home"
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <Links />
+    <Appbar/>
+    <Homepage/>
     </div>
-
+      
   )
 }
 
