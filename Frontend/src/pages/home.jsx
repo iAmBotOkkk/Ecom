@@ -4,12 +4,9 @@ import { Login } from "../pages/Login";
 
 export const Homepage = () => {
 
-
   return (
     <>
       <Appbar /> 
-      {/* <Login/> */}
-    
     </>
   );
 };
