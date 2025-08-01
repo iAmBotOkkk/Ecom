@@ -35,25 +35,26 @@ return (
     <div>
       {fields.map((field, index) => (
         <div key={index}>
-          <label className="block mb-2 ">{field.label}</label>
+          <label className="block mb-2 pl-2">{field.label}</label>
            <label  className="ml-2 text-sm text-gray-700">{field.check}</label>
           <input  className="w-full px-3 py-2 mb-4 border rounded" type= {field.type}
                 placeholder={field.placeholder}
                 id={field.id}
                 value={field.value}
-                onChange={field.onChange}/>
+                onChange={field.onChange}
+                required/>
         </div>
         
       ))}
       <div>
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-4 pl-2">
         <input
         required
         type="checkbox"
         id="remember"
         className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"
       />
-      <label htmlFor="remember" className="ml-2 text-sm text-gray-700">
+      <label htmlFor="remember" className="ml-2 text-sm text-gray-700 ">
         Remember me
       </label>
       </div>
