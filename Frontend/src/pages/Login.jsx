@@ -4,6 +4,7 @@ import { ButtonComponent } from "../Components/Button"
 import { Heading } from "../Components/Headers"
 import { Inputfield } from "../Components/Input"
 import { Subtext } from "../Components/Subtext"
+import axios from "axios"
 
 
 export const LoginField = () => {
@@ -26,11 +27,11 @@ export const LoginField = () => {
          },
        ]} />
         <ButtonComponent btn={"Login"} onClick={ async() =>{
-            const res = await axios.post("http://localhost:3000/user/signin",{
+            const res = await axios.post("http://localhost:3000/api/v1/User/signin",{
               email,
               password
             },)
-            
+            console.log(res.data.message)
         }}/>
         <Subtext link={"Don't have an account"} line={"signup"} to = {"/signup"} />
       </div>

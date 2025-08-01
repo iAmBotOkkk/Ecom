@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../models/db');
+const {User} = require('../models/db');
 const router  = express.Router();
 const jwt = require('jsonwebtoken');
 const { SignupValidation, SigninValidation } = require('../types');
@@ -56,6 +56,7 @@ router.post("/signin" , async (req , res) =>{
         const signedInUser = await User.findOne({
             email : req.body.email,
             password : req.body.password
+            
         });
         if(signedInUser){
             const token = jwt.sign({
