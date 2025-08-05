@@ -1,38 +1,95 @@
-import { useNavigate } from "react-router-dom"
+import React, { useState } from 'react';
+import { ShoppingBag, Menu, X, ImportIcon } from 'lucide-react';
 
-export const Appbar = () => {
-    const navigate = useNavigate()
-    return (
 
-        <div className="bg-[url('vegetables.jpg')] h-screen">
-            <div className="absolute inset-0 bg-black/70" >
-                <div className="z-10 flex items-center justify-center h-full">
-                    <h1 className="text-5xl font-bold text-white">Welcome to TAZA</h1>
-                </div>
-            </div>
-            <div className=" flex justify-between m-auto  w-7xl p-2 items-center relative">
-                <h1 className=" font-higher text-4xl font-bold bg-gradient-to-r from-green-400 to-green-600 text-transparent bg-clip-text">TAZA</h1>
-                <div className="flex items-center gap-3 p-4">
-                    <div>
-                        <button className="bg-gradient-to-r from-green-500
-                     to-green-600 text-white font-semibold px-4 py-2 
-                     rounded-md shadow-md cursor-pointer hover:from-green-600 hover:to-green-700 transition duration-300">
-                            Add Shop
-                        </button>
-                    </div>
-                    <div>
-                        <button className="px-6 py-2 rounded-md cursor-pointer font-semibold
-                     text-black border-2 border-green-500  bg-white
-                      hover:text-white hover:bg-gradient-to-r hover:from-green-500
-                       hover:via-green-600 hover:to-green-700 hover:shadow-lg transition duration-300 "
-                            onClick={() => {
-                                navigate("/signin")
-                            }}>
-                            Login
-                        </button>
-                    </div>
-                </div>
-            </div>
+
+
+
+export const Appbar = ({ onSignupClick, onSigninClick, onAddShopClick }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  return (
+    <nav className="bg-white shadow-lg sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <ShoppingBag className="h-8 w-8 text-emerald-600" />
+            <span className="text-2xl font-bold text-gray-900">Taza</span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="#" className="text-gray-700 hover:text-emerald-600 transition-colors duration-200 font-medium">
+              About
+            </a>
+            <a href="#" className="text-gray-700 hover:text-emerald-600 transition-colors duration-200 font-medium">
+              Contact
+            </a>
+            <button 
+              onClick={onAddShopClick}
+              className="cursor-pointer bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors duration-200 font-medium"
+            >
+              Add Shop
+            </button>
+            <button 
+              onClick={onSignupClick}
+              className="border cursor-pointer border-emerald-600 text-emerald-600 px-4 py-2 rounded-lg hover:bg-emerald-50 transition-colors duration-200 font-medium"
+            >
+              Sign Up
+            </button>
+            <button 
+              onClick={onSigninClick}
+              className=" cursor-pointer text-gray-700 hover:text-emerald-600 transition-colors duration-200 font-medium"
+            >
+              Sign In
+            </button>
+          </div>
+
+        
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-700 hover:text-emerald-600 transition-colors duration-200"
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
-    )
-}
+
+    
+        {isMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-200">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-emerald-600 transition-colors duration-200 font-medium">
+                About
+              </a>
+              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-emerald-600 transition-colors duration-200 font-medium">
+                Contact
+              </a>
+              <button 
+            
+                className="cursor-pointer block w-full px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors duration-200 font-medium text-center"
+              >
+                Add Shop
+              </button>
+              <button 
+          
+                className="cursor-pointer block w-full px-3 py-2 border border-emerald-600 text-emerald-600 rounded-lg hover:bg-emerald-50 transition-colors duration-200 font-medium text-center"
+              >
+                Sign Up
+              </button>
+              <button 
+        
+                className="cursor-pointer block w-full px-3 py-2 text-gray-700 hover:text-emerald-600 transition-colors duration-200 font-medium text-center"
+              >
+                Sign In
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+
